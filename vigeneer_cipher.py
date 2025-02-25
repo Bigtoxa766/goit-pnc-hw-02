@@ -92,14 +92,14 @@ def find_key_length(crypted_text, n=3):
     # Обчислення відстаней між повторюваними шаблонами
     distances = calculate_distances(matches)
     
-    # Підрахунок найпоширеніших відстаней (ці значення можуть бути корисні для визначення довжини ключа)
+    # Підрахунок найпоширеніших відстаней (для визначення довжини ключа)
     counter = Counter(distances)
-    most_common = counter.most_common(10)  # Отримуємо 10 найбільш поширених відстаней
+    most_common = counter.most_common(10)  
     print(f"Найбільш поширені відстані: {most_common}")
     
     return most_common
 
-# Приклад шифротексту (замість цього використовуйте свій шифротекст)
+# Шифротекст
 ciphertext = encrypted_text
 
 # Викликаємо функцію для пошуку ймовірної довжини ключа
@@ -136,7 +136,6 @@ def chi_squared_stat(column_text):
         for char in ALPHABET if expected_counts[char] > 0
     )
     return chi_squared
-
 
 # Функція знаходження ключа методом частотного аналізу
 def find_key(ciphertext, key_length):
@@ -176,7 +175,6 @@ def find_best_key_length(crypted_text, length_candidates):
     best_length = None
     best_chi_squared = float('inf')
 
-    
     columns = split_text_by_key_length(crypted_text, length_candidates)
     chi_squared_sum = sum(chi_squared_stat(column) for column in columns)
 
